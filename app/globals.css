@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 3.9%;
+  --foreground: 0 0% 98%;
+  --card: 0 0% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --popover: 0 0% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --primary: 0 0% 98%;
+  --primary-foreground: 0 0% 9%;
+  --secondary: 0 0% 14.9%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 0 0% 14.9%;
+  --muted-foreground: 0 0% 63.9%;
+  --accent: 0 0% 14.9%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 0 0% 14.9%;
+  --input: 0 0% 14.9%;
+  --ring: 0 0% 83.1%;
+  --radius: 0.5rem;
+
+  /* Telegram WebApp variables */
+  --tg-bg-color: #1a1a1a;
+  --tg-text-color: #ffffff;
+  --tg-button-color: #f97316;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+body {
+  color: hsl(var(--foreground));
+  background: hsl(var(--background));
+  font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+/* Telegram WebApp specific styles */
+.telegram-webapp {
+  background: var(--tg-bg-color, #1a1a1a);
+  color: var(--tg-text-color, #ffffff);
+  min-height: 100vh;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.telegram-theme {
+  background: var(--tg-bg-color, #1a1a1a) !important;
+}
+
+/* Убираем скроллбары для мобильного вида */
+::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Адаптация под мобильные устройства */
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .telegram-webapp {
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+}
+
+/* Анимации для плавности */
+* {
+  transition: all 0.2s ease-in-out;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* Стили для карточек */
+.card {
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card:hover {
+  border-color: rgba(249, 115, 22, 0.3);
+  box-shadow: 0 4px 20px rgba(249, 115, 22, 0.1);
+}
