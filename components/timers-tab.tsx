@@ -21,13 +21,15 @@ export function TimersTab() {
     { name: "Организация", totalSeconds: 7200, remainingSeconds: 7200, isRunning: false },
     { name: "Автогон", totalSeconds: 5400, remainingSeconds: 5400, isRunning: false },
     { name: "Сутенерка", totalSeconds: 5400, remainingSeconds: 5400, isRunning: false },
-    { name: "Автобус", totalSeconds: 180, remainingSeconds: 180, isRunning: false }, // Укороченный таймер для теста
+    { name: "Автобус", totalSeconds: 5, remainingSeconds: 5, isRunning: false }, // Укороченный таймер для теста
     { name: "Задание клуба", totalSeconds: 7200, remainingSeconds: 7200, isRunning: false },
     { name: "Тир", totalSeconds: 5400, remainingSeconds: 5400, isRunning: false },
+    { name: "Швейка(Деморган)", totalSeconds: 87, remainingSeconds: 87, isRunning: false },
+    { name: "Коробки(Деморган)", totalSeconds: 67, remainingSeconds: 67, isRunning: false },
   ])
 
   const audioRef = useRef<HTMLAudioElement | null>(null) // Теперь этот реф для основного звука уведомления
-  const animationFrameRef = useRef<number>()
+  const animationFrameRef = useRef<number>(null)
 
   // Функция для сохранения текущего состояния таймеров
   const saveCurrentTimers = async (currentTimers: Timer[]) => {
@@ -168,15 +170,6 @@ export function TimersTab() {
         <div className="flex items-center gap-2">
           <Clock className="w-5 h-5" />
           <h1 className="text-lg font-semibold">Таймеры</h1>
-        </div>
-        <div className="flex items-center gap-2">
-          <Button variant="ghost" size="sm" className="text-gray-400">
-            <Home className="w-4 h-4 mr-1" />
-            Оплата жилья
-          </Button>
-          <Button variant="ghost" size="icon">
-            <Settings className="w-4 h-4" />
-          </Button>
         </div>
       </div>
 

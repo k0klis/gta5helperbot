@@ -31,14 +31,10 @@ export function TarotTab() {
     <div className="p-4">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-2">
-          <Plus className="w-5 h-5" />
           <h1 className="text-lg font-semibold">Реанимация</h1>
         </div>
         <div className="flex items-center gap-2">
           <h2 className="text-lg font-semibold">Карты таро</h2>
-          <Button variant="ghost" size="icon">
-            <Settings className="w-4 h-4" />
-          </Button>
         </div>
       </div>
 
