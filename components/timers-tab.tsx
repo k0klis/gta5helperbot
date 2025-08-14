@@ -26,6 +26,11 @@ export function TimersTab() {
     { name: "Тир", totalSeconds: 5400, remainingSeconds: 5400, isRunning: false },
     { name: "Швейка(Деморган)", totalSeconds: 87, remainingSeconds: 87, isRunning: false },
     { name: "Коробки(Деморган)", totalSeconds: 67, remainingSeconds: 67, isRunning: false },
+    { name: "Байкерка", totalSeconds: 7200, remainingSeconds: 7200, isRunning: false },
+    { name: "Реднеки", totalSeconds: 7200, remainingSeconds: 7200, isRunning: false },
+    { name: "Кармит", totalSeconds: 7200, remainingSeconds: 7200, isRunning: false },
+    { name: "Меривезер", totalSeconds: 7200, remainingSeconds: 7200, isRunning: false },
+    { name: "Эпсилон", totalSeconds: 7200, remainingSeconds: 7200, isRunning: false },
   ])
 
   const audioRef = useRef<HTMLAudioElement | null>(null) // Теперь этот реф для основного звука уведомления
