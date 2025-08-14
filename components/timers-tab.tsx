@@ -15,23 +15,46 @@ interface Timer {
   startTime?: number // Время начала таймера
 }
 
+// Базовый список всех таймеров (включая новые)
+const DEFAULT_TIMERS: Timer[] = [
+  { name: "Почта", totalSeconds: 600, remainingSeconds: 600, isRunning: false },
+  { name: "Организация", totalSeconds: 7200, remainingSeconds: 7200, isRunning: false },
+  { name: "Автогон", totalSeconds: 5400, remainingSeconds: 5400, isRunning: false },
+  { name: "Сутенерка", totalSeconds: 5400, remainingSeconds: 5400, isRunning: false },
+  { name: "Автобус", totalSeconds: 5, remainingSeconds: 5, isRunning: false }, // Укороченный таймер для теста
+  { name: "Задание клуба", totalSeconds: 7200, remainingSeconds: 7200, isRunning: false },
+  { name: "Тир", totalSeconds: 5400, remainingSeconds: 5400, isRunning: false },
+  { name: "Швейка(Деморган)", totalSeconds: 87, remainingSeconds: 87, isRunning: false },
+  { name: "Коробки(Деморган)", totalSeconds: 67, remainingSeconds: 67, isRunning: false },
+  { name: "Байкерка", totalSeconds: 7200, remainingSeconds: 7200, isRunning: false },
+  { name: "Реднеки", totalSeconds: 7200, remainingSeconds: 7200, isRunning: false },
+  { name: "Кармит", totalSeconds: 7200, remainingSeconds: 7200, isRunning: false },
+  { name: "Меривезер", totalSeconds: 7200, remainingSeconds: 7200, isRunning: false },
+  { name: "Эпсилон", totalSeconds: 7200, remainingSeconds: 7200, isRunning: false },
+]
+
+// Функция для миграции таймеров - добавляет новые таймеры к существующим
+const migrateTimers = (savedTimers: Timer[]): Timer[] => {
+  const migratedTimers = [...savedTimers]
+  
+  // Добавляем новые таймеры, которых нет у пользователя
+  DEFAULT_TIMERS.forEach(defaultTimer => {
+    const existingTimer = savedTimers.find(t => t.name === defaultTimer.name)
+    if (!existingTimer) {
+      migratedTimers.push({
+        ...defaultTimer,
+        remainingSeconds: defaultTimer.totalSeconds,
+        isRunning: false,
+        startTime: undefined
+      })
+    }
+  })
+  
+  return migratedTimers
+}
+
 export function TimersTab() {
-  const [timers, setTimers] = useState<Timer[]>([
-    { name: "Почта", totalSeconds: 600, remainingSeconds: 600, isRunning: false },
-    { name: "Организация", totalSeconds: 7200, remainingSeconds: 7200, isRunning: false },
-    { name: "Автогон", totalSeconds: 5400, remainingSeconds: 5400, isRunning: false },
-    { name: "Сутенерка", totalSeconds: 5400, remainingSeconds: 5400, isRunning: false },
-    { name: "Автобус", totalSeconds: 5, remainingSeconds: 5, isRunning: false }, // Укороченный таймер для теста
-    { name: "Задание клуба", totalSeconds: 7200, remainingSeconds: 7200, isRunning: false },
-    { name: "Тир", totalSeconds: 5400, remainingSeconds: 5400, isRunning: false },
-    { name: "Швейка(Деморган)", totalSeconds: 87, remainingSeconds: 87, isRunning: false },
-    { name: "Коробки(Деморган)", totalSeconds: 67, remainingSeconds: 67, isRunning: false },
-    { name: "Байкерка", totalSeconds: 7200, remainingSeconds: 7200, isRunning: false },
-    { name: "Реднеки", totalSeconds: 7200, remainingSeconds: 7200, isRunning: false },
-    { name: "Кармит", totalSeconds: 7200, remainingSeconds: 7200, isRunning: false },
-    { name: "Меривезер", totalSeconds: 7200, remainingSeconds: 7200, isRunning: false },
-    { name: "Эпсилон", totalSeconds: 7200, remainingSeconds: 7200, isRunning: false },
-  ])
+  const [timers, setTimers] = useState<Timer[]>(DEFAULT_TIMERS)
 
   const audioRef = useRef<HTMLAudioElement | null>(null) // Теперь этот реф для основного звука уведомления
   const animationFrameRef = useRef<number>(null)
@@ -55,7 +78,13 @@ export function TimersTab() {
       if (userId && initData) {
         const savedData = await getUserGameData(userId, initData)
         if (savedData && savedData.timersData) {
-          setTimers(savedData.timersData)
+          // Применяем миграцию к сохраненным таймерам
+          const migratedTimers = migrateTimers(savedData.timersData)
+          setTimers(migratedTimers)
+          // Сохраняем обновленные таймеры с новыми
+          if (migratedTimers.length !== savedData.timersData.length) {
+            await saveUserGameData(userId, { ...savedData, timersData: migratedTimers }, initData)
+          }
         }
       }
     }
