@@ -1774,10 +1774,26 @@ export function FarmTab() {
                             </Button>
                             <Button
                               size="sm"
-                              disabled={activity.isCompleted || activity.currentCount >= activity.maxCount}
+                              disabled={activity.isCompleted}
                               onClick={(e) => {
                                 e.stopPropagation()
-                                increaseCount(index)
+                                // Сразу устанавливаем максимальное значение и выполняем задание
+                                setActivities((prev) => {
+                                  const newActivities = prev.map((act, i) => {
+                                    if (i === index && !act.isCompleted && act.maxCount > 0) {
+                                      const finalBP = act.baseBP * getMultiplier()
+                                      setTotalBP((prevBP) => {
+                                        const updatedBP = prevBP + finalBP
+                                        saveCurrentFarmData(updatedBP, isVIP, isX2, newActivities, counterValue)
+                                        return updatedBP
+                                      })
+                                      return { ...act, currentCount: act.maxCount, isCompleted: true }
+                                    }
+                                    return act
+                                  })
+                                  saveCurrentFarmData(totalBP, isVIP, isX2, newActivities, counterValue)
+                                  return newActivities
+                                })
                               }}
                               className={`text-xs w-12 ${
                                 activity.isCompleted ? "bg-green-600" : "bg-orange-600 hover:bg-orange-700"
@@ -1893,8 +1909,25 @@ export function FarmTab() {
                             </Button>
                             <Button
                               size="sm"
-                              disabled={ach.isCompleted || ach.currentCount >= ach.maxCount}
-                              onClick={() => increaseAchievement(index)}
+                              disabled={ach.isCompleted}
+                              onClick={() => {
+                                // Сразу устанавливаем максимальное значение и выполняем достижение
+                                setAchievements((prev) => {
+                                  const newAchievements = prev.map((achievement, i) => {
+                                    if (i === index && !achievement.isCompleted && achievement.maxCount > 0) {
+                                      setAchievementsBP((prevBP) => {
+                                        const updatedBP = prevBP + achievement.baseBP
+                                        saveAchievementsData(newAchievements, updatedBP)
+                                        return updatedBP
+                                      })
+                                      return { ...achievement, currentCount: achievement.maxCount, isCompleted: true }
+                                    }
+                                    return achievement
+                                  })
+                                  saveAchievementsData(newAchievements, achievementsBP + (newAchievements[index]?.isCompleted && !prev[index]?.isCompleted ? newAchievements[index].baseBP : 0))
+                                  return newAchievements
+                                })
+                              }}
                               className={`text-xs w-12 ${
                                 ach.isCompleted ? "bg-green-600" : "bg-orange-600 hover:bg-orange-700"
                               }`}
