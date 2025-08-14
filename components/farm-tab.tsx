@@ -1772,13 +1772,19 @@ export function FarmTab() {
                             >
                               <ChevronUp className="w-3 h-3" />
                             </Button>
-                            <div className="w-12 text-center">
-                              {activity.isCompleted ? (
-                                <span className="text-green-500 text-xs">✓</span>
-                              ) : (
-                                <span className="text-xs text-gray-400">+{finalBP}</span>
-                              )}
-                            </div>
+                            <Button
+                              size="sm"
+                              disabled={activity.isCompleted || activity.currentCount >= activity.maxCount}
+                              onClick={(e) => {
+                                e.stopPropagation()
+                                increaseCount(index)
+                              }}
+                              className={`text-xs w-12 ${
+                                activity.isCompleted ? "bg-green-600" : "bg-orange-600 hover:bg-orange-700"
+                              }`}
+                            >
+                              {activity.isCompleted ? "✓" : `+${finalBP}`}
+                            </Button>
                           </>
                         ) : (
                           <Button
@@ -1885,13 +1891,16 @@ export function FarmTab() {
                             >
                               <ChevronUp className="w-3 h-3" />
                             </Button>
-                            <div className="w-12 text-center">
-                              {ach.isCompleted ? (
-                                <span className="text-green-500 text-xs">✓</span>
-                              ) : (
-                                <span className="text-xs text-gray-400">+{ach.baseBP}</span>
-                              )}
-                            </div>
+                            <Button
+                              size="sm"
+                              disabled={ach.isCompleted || ach.currentCount >= ach.maxCount}
+                              onClick={() => increaseAchievement(index)}
+                              className={`text-xs w-12 ${
+                                ach.isCompleted ? "bg-green-600" : "bg-orange-600 hover:bg-orange-700"
+                              }`}
+                            >
+                              {ach.isCompleted ? "✓" : `+${ach.baseBP}`}
+                            </Button>
                           </>
                         ) : (
                           <Button
