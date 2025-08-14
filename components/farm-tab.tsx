@@ -1866,7 +1866,7 @@ export function FarmTab() {
             </div>
             <div className="flex items-center gap-2">
               <span className="text-sm text-gray-400">Всего BP:</span>
-              <span className="text-yellow-500">{achievementsBP/2}</span>
+              <span className="text-yellow-500">{achievementsBP}</span>
             </div>
           </div>
           <div className="space-y-2">
