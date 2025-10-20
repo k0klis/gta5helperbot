@@ -201,7 +201,7 @@ const DEFAULT_ACTIVITIES: Activity[] = [
   baseBP: 1,
   isCompleted: false,
   description: "Набрать 10 очков в большом теннисе"
-  }
+  },
 
   {
     name: "Киностудия",
