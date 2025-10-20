@@ -41,6 +41,169 @@ const DEFAULT_ACTIVITIES: Activity[] = [
     description: "Успешно пройти тренировку в тире (>75% попаданий по целям)",
   },
   {
+  name: "Посетить сайт",
+  icon: "🌐",
+  maxCount: 1,
+  currentCount: 0,
+  baseBP: 1,
+  isCompleted: false,
+  description: "Посетить любой сайт в браузере"
+  },
+  {
+  name: "Зайти в канал Brawl",
+  icon: "📺",
+  maxCount: 1,
+  currentCount: 0,
+  baseBP: 1,
+  isCompleted: false,
+  description: "Зайти в любой канал в Brawl"
+  },
+  {
+  name: "Лайк в Match",
+  icon: "❤️",
+  maxCount: 1,
+  currentCount: 0,
+  baseBP: 1,
+  isCompleted: false,
+  description: "Поставить лайк любой анкете в Match"
+  },
+  {
+  name: "Кейс за DP",
+  icon: "🎁",
+  maxCount: 1,
+  currentCount: 0,
+  baseBP: 10,
+  isCompleted: false,
+  description: "Прокрутить за DP серебрянный или золотой кейс"
+  },
+  {
+  name: "Броски питомцу",
+  icon: "🐾",
+  maxCount: 15,
+  currentCount: 0,
+  baseBP: 2,
+  isCompleted: false,
+  description: "Кинуть мяч питомцу 15 раз"
+  },
+  {
+  name: "Команды питомца",
+  icon: "🐶",
+  maxCount: 15,
+  currentCount: 0,
+  baseBP: 2,
+  isCompleted: false,
+  description: "Выполнить 15 команд питомцем"
+  },
+  {
+  name: "Колесо удачи",
+  icon: "🎡",
+  maxCount: 1,
+  currentCount: 0,
+  baseBP: 3,
+  isCompleted: false,
+  description: "Сделать ставку в межсерверном колесе удачи казино"
+  },
+  {
+  name: "Метро",
+  icon: "🚇",
+  maxCount: 1,
+  currentCount: 0,
+  baseBP: 2,
+  isCompleted: false,
+  description: "Проехать одну станцию на метро"
+  },
+  {
+  name: "Рыбалка",
+  icon: "🎣",
+  maxCount: 20,
+  currentCount: 0,
+  baseBP: 4,
+  isCompleted: false,
+  description: "Поймать 20 рыб"
+  },
+  {
+  name: "Квесты клуба",
+  icon: "🏆",
+  maxCount: 2,
+  currentCount: 0,
+  baseBP: 4,
+  isCompleted: false,
+  description: "Выполнить 2 квеста любых клубов"
+  },
+  {
+  name: "Автосервис",
+  icon: "🔧",
+  maxCount: 1,
+  currentCount: 0,
+  baseBP: 1,
+  isCompleted: false,
+  description: "Починить деталь в автосервисе"
+  },
+  {
+  name: "Баскетбол",
+  icon: "🏀",
+  maxCount: 2,
+  currentCount: 0,
+  baseBP: 1,
+  isCompleted: false,
+  description: "Забросить 2 мяча в баскетболе"
+  },
+  {
+  name: "Футбол",
+  icon: "⚽",
+  maxCount: 2,
+  currentCount: 0,
+  baseBP: 1,
+  isCompleted: false,
+  description: "Забить 2 гола в футболе"
+  },
+  {
+  name: "Армрестлинг",
+  icon: "💪",
+  maxCount: 1,
+  currentCount: 0,
+  baseBP: 1,
+  isCompleted: false,
+  description: "Победить в армрестлинге"
+  },
+  {
+  name: "Дартс",
+  icon: "🎯",
+  maxCount: 1,
+  currentCount: 0,
+  baseBP: 1,
+  isCompleted: false,
+  description: "Победить в дартс"
+  },
+  {
+  name: "Волейбол",
+  icon: "🏐",
+  maxCount: 10,
+  currentCount: 0,
+  baseBP: 1,
+  isCompleted: false,
+  description: "Забить 10 голов в волейболе"
+  },
+  {
+  name: "Настольный теннис",
+  icon: "🏓",
+  maxCount: 10,
+  currentCount: 0,
+  baseBP: 1,
+  isCompleted: false,
+  description: "Набрать 10 очков в настольном теннисе"
+  },
+  {
+  name: "Большой теннис",
+  icon: "🎾",
+  maxCount: 10,
+  currentCount: 0,
+  baseBP: 1,
+  isCompleted: false,
+  description: "Набрать 10 очков в большом теннисе"
+  }
+
+  {
     name: "Киностудия",
     icon: "🎬",
     maxCount: 0,
