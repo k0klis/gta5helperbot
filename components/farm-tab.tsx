@@ -34,7 +34,7 @@ const DEFAULT_ACTIVITIES: Activity[] = [
   {
     name: "Платеж по лизингу",
     icon: "🧾",
-    maxCount: 1,
+    maxCount: 0,
     currentCount: 0,
     baseBP: 2,
     isCompleted: false,
